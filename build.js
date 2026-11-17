@@ -88,14 +88,11 @@ try {
   process.exit(1);
 }
 
-// 5. Copy _redirects if present
+// 5. Clean up any legacy redirects
 try {
-  if (fs.existsSync('_redirects')) {
-    fs.copyFileSync('_redirects', `${outdir}/_redirects`);
-    console.log(`✔ Redirects copied: ${outdir}/_redirects`);
+  if (fs.existsSync(`${outdir}/_redirects`)) {
+    fs.unlinkSync(`${outdir}/_redirects`);
   }
-} catch (err) {
-  console.warn('⚠ Could not copy _redirects:', err);
-}
+} catch (err) {}
 
 console.log('--- Build completed successfully using local node_modules! ---');

@@ -1,8 +1,5 @@
 {
   "installCommand": "",
-  "buildCommand": "echo 'Pre-built static site - skipping build'",
-  "outputDirectory": "dist",
-  "rewrites": [
-    { "source": "/(.*)", "destination": "/index.html" }
-  ]
+  "buildCommand": "echo 'Static pre-built deployment'",
+  "outputDirectory": "dist"
 }
