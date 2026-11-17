@@ -4,7 +4,8 @@ import fs from 'node:fs';
 
 console.log('--- Starting Kuchoriya Redesign Build ---');
 
-const isProd = process.argv.includes('--prod');
+// Always build for production unless explicitly running in dev mode
+const isProd = !process.argv.includes('--dev');
 const outdir = 'dist';
 
 if (!fs.existsSync(outdir)) {
@@ -47,13 +48,39 @@ try {
   process.exit(1);
 }
 
-// 3. Generate production dist/index.html with self-contained relative paths
+// 3. Mirror assets into dist/dist/ and root to guarantee zero 404s regardless of Vercel outputDirectory setting
+try {
+  const nestedDist = path.join(outdir, 'dist');
+  if (!fs.existsSync(nestedDist)) {
+    fs.mkdirSync(nestedDist, { recursive: true });
+  }
+  fs.copyFileSync(`${outdir}/bundle.js`, `${nestedDist}/bundle.js`);
+  fs.copyFileSync(`${outdir}/bundle.css`, `${nestedDist}/bundle.css`);
+  if (fs.existsSync(`${outdir}/tailwind.js`)) {
+    fs.copyFileSync(`${outdir}/tailwind.js`, `${nestedDist}/tailwind.js`);
+    fs.copyFileSync(`${outdir}/tailwind.js`, 'tailwind.js');
+  }
+  if (fs.existsSync(`${outdir}/confetti.js`)) {
+    fs.copyFileSync(`${outdir}/confetti.js`, `${nestedDist}/confetti.js`);
+    fs.copyFileSync(`${outdir}/confetti.js`, 'confetti.js');
+  }
+  fs.copyFileSync(`${outdir}/bundle.js`, 'bundle.js');
+  fs.copyFileSync(`${outdir}/bundle.css`, 'bundle.css');
+  console.log(`✔ Mirrored assets into ${nestedDist} and root (fail-safe for all output directory configurations)`);
+} catch (err) {
+  console.warn('⚠ Could not mirror assets:', err);
+}
+
+// 4. Generate production dist/index.html with self-contained relative paths and fallback
 try {
   let html = fs.readFileSync('index.html', 'utf-8');
   html = html.replace(/\.\/dist\/bundle\.css/g, './bundle.css');
   html = html.replace(/\.\/dist\/tailwind\.js/g, './tailwind.js');
   html = html.replace(/\.\/dist\/confetti\.js/g, './confetti.js');
-  html = html.replace(/\.\/dist\/bundle\.js/g, './bundle.js');
+  html = html.replace(
+    /<script src="(?:\.\/dist\/bundle\.js|\.\/bundle\.js)".*?><\/script>/g,
+    '<script src="./bundle.js" onerror="this.onerror=null;this.src=\'./dist/bundle.js\';"></script>'
+  );
   fs.writeFileSync(`${outdir}/index.html`, html, 'utf-8');
   console.log(`✔ Production HTML generated: ${outdir}/index.html`);
 } catch (err) {
@@ -61,7 +88,7 @@ try {
   process.exit(1);
 }
 
-// 4. Copy _redirects if present
+// 5. Copy _redirects if present
 try {
   if (fs.existsSync('_redirects')) {
     fs.copyFileSync('_redirects', `${outdir}/_redirects`);
