@@ -70,8 +70,8 @@ try {
   const templateHtml = fs.readFileSync('index.template.html', 'utf-8');
 
   const finalHtml = templateHtml
-    .replace('<!-- INLINE_CSS -->', cssContent)
-    .replace('<!-- INLINE_JS -->', bundleJsContent);
+    .split('<!-- INLINE_CSS -->').join(cssContent)
+    .split('<!-- INLINE_JS -->').join(bundleJsContent);
 
   fs.writeFileSync('index.html', finalHtml, 'utf-8');
   fs.writeFileSync(`${outdir}/index.html`, finalHtml, 'utf-8');

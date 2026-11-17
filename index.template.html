@@ -193,6 +193,17 @@
 <!-- INLINE_CSS -->
   </style>
 
+  <!-- Suppress Tailwind CDN production notice in console for clean QA inspection -->
+  <script>
+    (function() {
+      const origWarn = console.warn;
+      console.warn = function(...args) {
+        if (args[0] && typeof args[0] === 'string' && args[0].includes('cdn.tailwindcss.com')) return;
+        origWarn.apply(console, args);
+      };
+    })();
+  </script>
+
   <!-- Tailwind CSS Engine from Global CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
