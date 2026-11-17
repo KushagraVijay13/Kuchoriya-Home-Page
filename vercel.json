@@ -1,5 +1,3 @@
 {
-  "installCommand": "",
-  "buildCommand": "echo 'Static pre-built deployment'",
-  "outputDirectory": "dist"
+  "cleanUrls": true
 }
