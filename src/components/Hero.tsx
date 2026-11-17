@@ -118,7 +118,7 @@ export const Hero: React.FC<HeroProps> = ({ onOpenConsultation }) => {
               </a>
 
               <a
-                href="#industries"
+                href="#case-studies"
                 className="btn btn-secondary"
                 style={{
                   padding: '0.95rem 1.85rem',
@@ -126,7 +126,7 @@ export const Hero: React.FC<HeroProps> = ({ onOpenConsultation }) => {
                   borderRadius: '12px'
                 }}
               >
-                <span>Explore Work by Field</span>
+                <span>View Our Work</span>
               </a>
             </div>
 
@@ -143,19 +143,19 @@ export const Hero: React.FC<HeroProps> = ({ onOpenConsultation }) => {
               <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem' }}>
                 <CheckCircle2 size={18} style={{ color: '#FA5413', flexShrink: 0 }} />
                 <span style={{ fontSize: '0.86rem', color: '#CBD5E1', fontWeight: 600 }}>
-                  15+ Years Industry Experience
+                  10+ Years Industry Experience
                 </span>
               </div>
               <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem' }}>
                 <CheckCircle2 size={18} style={{ color: '#FA5413', flexShrink: 0 }} />
                 <span style={{ fontSize: '0.86rem', color: '#CBD5E1', fontWeight: 600 }}>
-                  1,000+ Platforms Delivered
+                  500+ Platforms Delivered
                 </span>
               </div>
               <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem' }}>
                 <CheckCircle2 size={18} style={{ color: '#FA5413', flexShrink: 0 }} />
                 <span style={{ fontSize: '0.86rem', color: '#CBD5E1', fontWeight: 600 }}>
-                  Strict NDA &amp; 100% IP Transfer
+                  Strict NDA &amp; 100% IP Ownership
                 </span>
               </div>
             </div>
@@ -192,7 +192,7 @@ export const Hero: React.FC<HeroProps> = ({ onOpenConsultation }) => {
                   <span style={{ width: '11px', height: '11px', borderRadius: '50%', backgroundColor: '#F59E0B' }} />
                   <span style={{ width: '11px', height: '11px', borderRadius: '50%', backgroundColor: '#10B981' }} />
                   <span style={{ fontSize: '0.74rem', color: '#64748B', marginLeft: '0.5rem', fontFamily: 'monospace' }}>
-                    kuchoriya-telemetry.v4
+                    conceptual-architecture-preview // system-demo
                   </span>
                 </div>
 
@@ -255,44 +255,44 @@ export const Hero: React.FC<HeroProps> = ({ onOpenConsultation }) => {
               {/* Mockup Body Content */}
               <div style={{ padding: '1.25rem' }}>
 
-                {/* Top Metrics Row */}
+                {/* Top Metrics Row (Conceptual Architecture Demonstration) */}
                 <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '0.75rem', marginBottom: '1.25rem' }}>
                   <div style={{ backgroundColor: '#0F141F', border: '1px solid rgba(255, 255, 255, 0.08)', borderRadius: '10px', padding: '0.75rem' }}>
                     <div style={{ fontSize: '0.7rem', color: '#94A3B8', display: 'flex', alignItems: 'center', gap: '0.3rem' }}>
                       <Activity size={12} style={{ color: '#FA5413' }} />
-                      <span>Inference Speed</span>
+                      <span>Pipeline Speed</span>
                     </div>
-                    <div style={{ fontSize: '1.2rem', fontWeight: 800, color: '#FFFFFF', marginTop: '0.2rem' }}>
-                      14.2 ms
+                    <div style={{ fontSize: '1.08rem', fontWeight: 800, color: '#FFFFFF', marginTop: '0.2rem' }}>
+                      Sub-Second
                     </div>
                     <div style={{ fontSize: '0.65rem', color: '#10B981', marginTop: '0.1rem' }}>
-                      ↑ 99.98% Latency SLA
+                      Streaming Data Pipeline
                     </div>
                   </div>
 
                   <div style={{ backgroundColor: '#0F141F', border: '1px solid rgba(255, 255, 255, 0.08)', borderRadius: '10px', padding: '0.75rem' }}>
                     <div style={{ fontSize: '0.7rem', color: '#94A3B8', display: 'flex', alignItems: 'center', gap: '0.3rem' }}>
                       <TrendingUp size={12} style={{ color: '#10B981' }} />
-                      <span>RAG Accuracy</span>
+                      <span>AI Engine</span>
                     </div>
-                    <div style={{ fontSize: '1.2rem', fontWeight: 800, color: '#FFFFFF', marginTop: '0.2rem' }}>
-                      99.4%
+                    <div style={{ fontSize: '1.08rem', fontWeight: 800, color: '#FFFFFF', marginTop: '0.2rem' }}>
+                      Agentic RAG
                     </div>
                     <div style={{ fontSize: '0.65rem', color: '#10B981', marginTop: '0.1rem' }}>
-                      Evaluated on 50k tokens
+                      Vector Knowledge Hub
                     </div>
                   </div>
 
                   <div style={{ backgroundColor: '#0F141F', border: '1px solid rgba(255, 255, 255, 0.08)', borderRadius: '10px', padding: '0.75rem' }}>
                     <div style={{ fontSize: '0.7rem', color: '#94A3B8', display: 'flex', alignItems: 'center', gap: '0.3rem' }}>
                       <Shield size={12} style={{ color: '#3B82F6' }} />
-                      <span>Security Guard</span>
+                      <span>Security Model</span>
                     </div>
-                    <div style={{ fontSize: '1.2rem', fontWeight: 800, color: '#FFFFFF', marginTop: '0.2rem' }}>
-                      Zero Leaks
+                    <div style={{ fontSize: '1.08rem', fontWeight: 800, color: '#FFFFFF', marginTop: '0.2rem' }}>
+                      Zero-Trust
                     </div>
                     <div style={{ fontSize: '0.65rem', color: '#3B82F6', marginTop: '0.1rem' }}>
-                      HIPAA &amp; SOC 2 Ready
+                      Role-Based Access Guard
                     </div>
                   </div>
                 </div>
@@ -482,13 +482,13 @@ export const Hero: React.FC<HeroProps> = ({ onOpenConsultation }) => {
                   </div>
                 </div>
 
-                {/* Bottom Status Ribbon */}
-                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', fontSize: '0.75rem', color: '#94A3B8' }}>
+                {/* Bottom Status Ribbon (Clear Conceptual Disclaimer) */}
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', fontSize: '0.72rem', color: '#94A3B8', flexWrap: 'wrap', gap: '0.5rem' }}>
                   <div style={{ display: 'flex', alignItems: 'center', gap: '0.4rem' }}>
                     <span style={{ width: '6px', height: '6px', borderRadius: '50%', backgroundColor: '#10B981' }} />
-                    <span>Live Production Cluster</span>
+                    <span>Conceptual Architecture Demo</span>
                   </div>
-                  <span style={{ color: '#CBD5E1', fontWeight: 600 }}>Uptime: 99.99% • Kuchoriya SLA</span>
+                  <span style={{ color: '#94A3B8', fontStyle: 'italic' }}>* Representative software engineering topology</span>
                 </div>
 
               </div>

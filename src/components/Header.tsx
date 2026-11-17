@@ -54,12 +54,20 @@ export const Header: React.FC<HeaderProps> = ({ onOpenConsultation }) => {
     { label: 'Services', href: '#services' },
     { label: 'Industries', href: '#industries' },
     { label: 'Our Work', href: '#case-studies' },
-    { label: 'Estimator', href: '#estimator' },
-    { label: 'Why Us', href: '#why-choose-us' },
-    { label: 'Process', href: '#development-process' },
-    { label: 'Technologies', href: '#technologies' },
-    { label: 'FAQ', href: '#faq' },
-    { label: 'Contact', href: '#contact' },
+    { label: 'About Us', href: '#why-choose-us' },
+    { label: 'Insights', href: '#faq' },
+  ];
+
+  const mobileNavLinks = [
+    { label: 'Services', href: '#services' },
+    { label: 'Industries', href: '#industries' },
+    { label: 'Our Work', href: '#case-studies' },
+    { label: 'About Us', href: '#why-choose-us' },
+    { label: 'Why Kuchoriya', href: '#why-choose-us' },
+    { label: 'Development Process', href: '#development-process' },
+    { label: 'Cost Estimator', href: '#estimator' },
+    { label: 'Insights & FAQ', href: '#faq' },
+    { label: 'Contact Us', href: '#contact' },
   ];
 
   return (
@@ -119,17 +127,17 @@ export const Header: React.FC<HeaderProps> = ({ onOpenConsultation }) => {
               </a>
             </div>
 
-            {/* Right: Clutch 5.0 & Global Office Indicator */}
+            {/* Right: Verified Rating & Certification Indicators */}
             <div style={{ display: 'flex', alignItems: 'center', gap: '1.25rem' }}>
               <div style={{ display: 'inline-flex', alignItems: 'center', gap: '0.35rem', color: '#E2E8F0' }}>
                 <Star size={13} style={{ fill: '#FA5413', color: '#FA5413' }} />
                 <span style={{ fontWeight: 600 }}>Rated 5.0</span>
-                <span style={{ color: '#94A3B8' }}>on Clutch & GoodFirms</span>
+                <span style={{ color: '#94A3B8' }}>on Clutch &amp; GoodFirms</span>
               </div>
               <span style={{ color: 'rgba(255, 255, 255, 0.15)' }}>|</span>
               <div style={{ display: 'inline-flex', alignItems: 'center', gap: '0.35rem', color: '#94A3B8' }}>
                 <ShieldCheck size={13} style={{ color: '#10B981' }} />
-                <span>ISO 9001 Certified & HIPAA Ready</span>
+                <span>ISO 9001:2015 Certified Quality</span>
               </div>
             </div>
           </div>
@@ -142,10 +150,9 @@ export const Header: React.FC<HeaderProps> = ({ onOpenConsultation }) => {
             <Logo variant="dark" size="md" />
           </a>
 
-          {/* Desktop Navigation Links */}
+          {/* Desktop Navigation Links (Visible on 1024px and above) */}
           <nav 
-            style={{ display: 'none', alignItems: 'center', gap: '1.75rem' }} 
-            className="hidden lg:flex"
+            className="desktop-nav"
             aria-label="Main Navigation"
           >
             {navLinks.map((link) => (
@@ -155,12 +162,13 @@ export const Header: React.FC<HeaderProps> = ({ onOpenConsultation }) => {
                 style={{
                   color: '#E2E8F0',
                   textDecoration: 'none',
-                  fontSize: '0.92rem',
-                  fontWeight: 500,
-                  transition: 'color 0.2s ease',
+                  fontSize: '0.94rem',
+                  fontWeight: 600,
+                  transition: 'all 0.2s ease',
                   padding: '0.4rem 0',
                   position: 'relative'
                 }}
+                className="hover:text-orange"
                 onMouseEnter={(e) => { e.currentTarget.style.color = '#FA5413'; }}
                 onMouseLeave={(e) => { e.currentTarget.style.color = '#E2E8F0'; }}
               >
@@ -179,24 +187,23 @@ export const Header: React.FC<HeaderProps> = ({ onOpenConsultation }) => {
                   onOpenConsultation();
                 }
               }}
-              className="btn btn-primary hidden sm:inline-flex"
+              className="btn btn-primary discuss-project-btn"
               style={{
-                padding: '0.65rem 1.35rem',
-                fontSize: '0.9rem',
-                fontWeight: 600,
+                padding: '0.7rem 1.5rem',
+                fontSize: '0.92rem',
+                fontWeight: 700,
                 borderRadius: '8px',
-                display: 'inline-flex',
                 alignItems: 'center',
                 gap: '0.5rem',
                 textDecoration: 'none',
-                boxShadow: '0 4px 14px rgba(250, 84, 19, 0.35)'
+                boxShadow: '0 4px 14px rgba(250, 84, 19, 0.4)'
               }}
             >
               <span>Discuss Your Project</span>
               <ArrowRight size={16} />
             </a>
 
-            {/* Mobile Menu Button */}
+            {/* Mobile Menu Button (Visible strictly on mobile & tablet < 1024px) */}
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
               style={{
@@ -204,14 +211,11 @@ export const Header: React.FC<HeaderProps> = ({ onOpenConsultation }) => {
                 border: '1px solid rgba(255, 255, 255, 0.12)',
                 color: '#FFFFFF',
                 borderRadius: '8px',
-                padding: '0.5rem',
+                padding: '0.55rem',
                 cursor: 'pointer',
-                display: 'inline-flex',
-                alignItems: 'center',
-                justifyContent: 'center',
                 transition: 'background-color 0.2s ease'
               }}
-              className="lg:hidden"
+              className="mobile-menu-btn"
               aria-label={mobileMenuOpen ? 'Close Menu' : 'Open Menu'}
               aria-expanded={mobileMenuOpen}
             >
@@ -276,8 +280,8 @@ export const Header: React.FC<HeaderProps> = ({ onOpenConsultation }) => {
               </div>
 
               {/* Navigation Links */}
-              <nav style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
-                {navLinks.map((link) => (
+              <nav style={{ display: 'flex', flexDirection: 'column', gap: '0.4rem' }}>
+                {mobileNavLinks.map((link) => (
                   <a
                     key={link.label}
                     href={link.href}
@@ -285,9 +289,9 @@ export const Header: React.FC<HeaderProps> = ({ onOpenConsultation }) => {
                     style={{
                       color: '#E2E8F0',
                       textDecoration: 'none',
-                      fontSize: '1.05rem',
+                      fontSize: '0.98rem',
                       fontWeight: 600,
-                      padding: '0.75rem 0.5rem',
+                      padding: '0.65rem 0.5rem',
                       borderRadius: '6px',
                       display: 'flex',
                       alignItems: 'center',
@@ -296,7 +300,7 @@ export const Header: React.FC<HeaderProps> = ({ onOpenConsultation }) => {
                     }}
                   >
                     <span>{link.label}</span>
-                    <ArrowRight size={16} style={{ color: '#FA5413', opacity: 0.8 }} />
+                    <ArrowRight size={15} style={{ color: '#FA5413', opacity: 0.8 }} />
                   </a>
                 ))}
               </nav>

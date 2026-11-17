@@ -42,5 +42,11 @@ export const FAQ_DATA: FAQItem[] = [
     category: 'Support & Maintenance',
     question: 'Does Kuchoriya provide post-launch support?',
     answer: 'Absolutely. Every project includes complimentary post-launch warranty support (typically 30 to 90 days) to address any emergent edge cases. Beyond launch, we offer structured Service Level Agreements (SLAs), including 24/7 server monitoring, OS security patches, database optimizations, third-party API updates, and continuous feature development roadmaps.'
+  },
+  {
+    id: 'faq-clients',
+    category: 'Client Engagement',
+    question: 'Can the company work with startups and established businesses?',
+    answer: 'Yes, Kuchoriya TechSoft partners with both high-growth venture-backed startups and mature global enterprises. For startups, we provide rapid MVP development, clickable prototypes, scalable cloud architecture, and cost-effective agile sprints to achieve product-market fit fast. For established enterprises, we provide dedicated engineering squads, legacy modernization, complex ERP/CRM integrations, high-concurrency microservices, and compliance-first software engineering adhering to strict security standards.'
   }
 ];

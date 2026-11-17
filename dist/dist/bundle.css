@@ -142,6 +142,41 @@ body {
   border: 1px solid rgba(226, 232, 240, 0.8);
 }
 
+/* Responsive Navigation Bar Rules */
+.desktop-nav {
+  display: none !important;
+}
+
+@media (min-width: 1024px) {
+  .desktop-nav {
+    display: flex !important;
+    align-items: center !important;
+    gap: 1.75rem !important;
+  }
+}
+
+.mobile-menu-btn {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+
+@media (min-width: 1024px) {
+  .mobile-menu-btn {
+    display: none !important;
+  }
+}
+
+.discuss-project-btn {
+  display: none !important;
+}
+
+@media (min-width: 640px) {
+  .discuss-project-btn {
+    display: inline-flex !important;
+  }
+}
+
 /* Buttons */
 .btn {
   display: inline-flex;
