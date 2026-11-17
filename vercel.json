@@ -1,8 +1,7 @@
 {
   "buildCommand": "node build.js --prod",
-  "outputDirectory": ".",
-  "cleanUrls": true,
+  "outputDirectory": "dist",
   "rewrites": [
-    { "source": "/((?!dist/|favicon|.*\\..*).*)", "destination": "/index.html" }
+    { "source": "/(.*)", "destination": "/index.html" }
   ]
 }

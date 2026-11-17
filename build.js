@@ -47,4 +47,28 @@ try {
   process.exit(1);
 }
 
+// 3. Generate production dist/index.html with self-contained relative paths
+try {
+  let html = fs.readFileSync('index.html', 'utf-8');
+  html = html.replace(/\.\/dist\/bundle\.css/g, './bundle.css');
+  html = html.replace(/\.\/dist\/tailwind\.js/g, './tailwind.js');
+  html = html.replace(/\.\/dist\/confetti\.js/g, './confetti.js');
+  html = html.replace(/\.\/dist\/bundle\.js/g, './bundle.js');
+  fs.writeFileSync(`${outdir}/index.html`, html, 'utf-8');
+  console.log(`✔ Production HTML generated: ${outdir}/index.html`);
+} catch (err) {
+  console.error('✖ Failed to generate production HTML:', err);
+  process.exit(1);
+}
+
+// 4. Copy _redirects if present
+try {
+  if (fs.existsSync('_redirects')) {
+    fs.copyFileSync('_redirects', `${outdir}/_redirects`);
+    console.log(`✔ Redirects copied: ${outdir}/_redirects`);
+  }
+} catch (err) {
+  console.warn('⚠ Could not copy _redirects:', err);
+}
+
 console.log('--- Build completed successfully using local node_modules! ---');
