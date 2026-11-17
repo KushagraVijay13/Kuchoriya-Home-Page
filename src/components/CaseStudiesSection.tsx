@@ -16,7 +16,11 @@ import {
   Users,
   Film,
   Zap,
-  Layers
+  Layers,
+  ChevronLeft,
+  ChevronRight,
+  LayoutGrid,
+  SlidersHorizontal
 } from 'lucide-react';
 
 interface CaseStudiesSectionProps {
@@ -25,10 +29,23 @@ interface CaseStudiesSectionProps {
 
 export const CaseStudiesSection: React.FC<CaseStudiesSectionProps> = ({ onSelectProject }) => {
   const [selectedCategory, setSelectedCategory] = useState<string>('all');
+  const [viewMode, setViewMode] = useState<'slider' | 'grid'>('slider');
+  const [currentSlide, setCurrentSlide] = useState<number>(0);
 
   const filteredStudies = selectedCategory === 'all'
     ? CASE_STUDIES_DATA
     : CASE_STUDIES_DATA.filter((s) => s.industry === selectedCategory);
+
+  const totalSlides = Math.ceil(filteredStudies.length / 2);
+
+  const handleCategoryChange = (catId: string) => {
+    setSelectedCategory(catId);
+    setCurrentSlide(0);
+  };
+
+  const visibleStudies = viewMode === 'slider'
+    ? filteredStudies.slice(currentSlide * 2, currentSlide * 2 + 2)
+    : filteredStudies;
 
   const getProjectVisual = (id: string) => {
     switch (id) {
@@ -243,13 +260,13 @@ export const CaseStudiesSection: React.FC<CaseStudiesSectionProps> = ({ onSelect
           </p>
         </div>
 
-        {/* Category Filter Pills (Matches User's Screenshot 3 inspiration!) */}
+        {/* Category Filter Pills */}
         <div 
           style={{
             display: 'flex',
             flexWrap: 'wrap',
             gap: '0.55rem',
-            marginBottom: '2.75rem'
+            marginBottom: '1.75rem'
           }}
         >
           {CASE_STUDY_CATEGORIES.map((cat) => {
@@ -260,7 +277,7 @@ export const CaseStudiesSection: React.FC<CaseStudiesSectionProps> = ({ onSelect
                 key={cat.id}
                 onClick={(e) => {
                   e.preventDefault();
-                  setSelectedCategory(cat.id);
+                  handleCategoryChange(cat.id);
                 }}
                 style={{
                   padding: '0.55rem 1.15rem',
@@ -282,19 +299,165 @@ export const CaseStudiesSection: React.FC<CaseStudiesSectionProps> = ({ onSelect
           })}
         </div>
 
-        {/* Animated Case Studies Grid */}
+        {/* Interactive Controls Bar: Project Counter, View Switcher & Slide Controls */}
         <div 
-          key={selectedCategory}
+          style={{
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'space-between',
+            flexWrap: 'wrap',
+            gap: '1rem',
+            marginBottom: '1.75rem',
+            paddingBottom: '1rem',
+            borderBottom: '1px solid rgba(255, 255, 255, 0.08)'
+          }}
+        >
+          {/* Active Status & Count */}
+          <div style={{ display: 'flex', alignItems: 'center', gap: '0.65rem' }}>
+            <span 
+              style={{
+                width: '8px',
+                height: '8px',
+                borderRadius: '50%',
+                backgroundColor: '#10B981',
+                display: 'inline-block'
+              }} 
+              className="pulse-live"
+            />
+            <span style={{ fontSize: '0.88rem', color: '#CBD5E1', fontWeight: 600 }}>
+              {viewMode === 'slider' 
+                ? `Showing ${Math.min(currentSlide * 2 + 1, filteredStudies.length)}–${Math.min((currentSlide + 1) * 2, filteredStudies.length)} of ${filteredStudies.length} Flagship Projects`
+                : `Showing All ${filteredStudies.length} Flagship Projects`
+              }
+            </span>
+          </div>
+
+          {/* Controls: Slider/Grid Toggle + Navigation Chevrons */}
+          <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
+            {/* View Mode Switcher Toggle */}
+            <div 
+              style={{
+                display: 'inline-flex',
+                alignItems: 'center',
+                backgroundColor: '#101622',
+                borderRadius: '10px',
+                padding: '0.25rem',
+                border: '1px solid rgba(255, 255, 255, 0.08)'
+              }}
+            >
+              <button
+                type="button"
+                onClick={() => setViewMode('slider')}
+                style={{
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  gap: '0.4rem',
+                  padding: '0.35rem 0.75rem',
+                  borderRadius: '7px',
+                  fontSize: '0.8rem',
+                  fontWeight: 700,
+                  border: 'none',
+                  cursor: 'pointer',
+                  backgroundColor: viewMode === 'slider' ? '#FA5413' : 'transparent',
+                  color: viewMode === 'slider' ? '#FFFFFF' : '#94A3B8',
+                  transition: 'all 0.2s ease'
+                }}
+                title="Interactive Slider Mode (Zero Endless Scroll)"
+              >
+                <SlidersHorizontal size={13} />
+                <span>Slider</span>
+              </button>
+
+              <button
+                type="button"
+                onClick={() => setViewMode('grid')}
+                style={{
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  gap: '0.4rem',
+                  padding: '0.35rem 0.75rem',
+                  borderRadius: '7px',
+                  fontSize: '0.8rem',
+                  fontWeight: 700,
+                  border: 'none',
+                  cursor: 'pointer',
+                  backgroundColor: viewMode === 'grid' ? '#FA5413' : 'transparent',
+                  color: viewMode === 'grid' ? '#FFFFFF' : '#94A3B8',
+                  transition: 'all 0.2s ease'
+                }}
+                title="View All Projects Grid"
+              >
+                <LayoutGrid size={13} />
+                <span>Grid</span>
+              </button>
+            </div>
+
+            {/* Slider Navigation Chevrons */}
+            {viewMode === 'slider' && filteredStudies.length > 2 && (
+              <div style={{ display: 'flex', alignItems: 'center', gap: '0.45rem' }}>
+                <button
+                  type="button"
+                  onClick={() => setCurrentSlide((prev) => Math.max(0, prev - 1))}
+                  disabled={currentSlide === 0}
+                  style={{
+                    width: '36px',
+                    height: '36px',
+                    borderRadius: '10px',
+                    backgroundColor: currentSlide === 0 ? 'rgba(255, 255, 255, 0.03)' : 'rgba(250, 84, 19, 0.15)',
+                    border: currentSlide === 0 ? '1px solid rgba(255, 255, 255, 0.06)' : '1px solid rgba(250, 84, 19, 0.4)',
+                    color: currentSlide === 0 ? '#475569' : '#FA5413',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    cursor: currentSlide === 0 ? 'not-allowed' : 'pointer',
+                    transition: 'all 0.2s ease'
+                  }}
+                  aria-label="Previous Slide"
+                  title="Previous Projects"
+                >
+                  <ChevronLeft size={18} />
+                </button>
+
+                <button
+                  type="button"
+                  onClick={() => setCurrentSlide((prev) => Math.min(totalSlides - 1, prev + 1))}
+                  disabled={(currentSlide + 1) * 2 >= filteredStudies.length}
+                  style={{
+                    width: '36px',
+                    height: '36px',
+                    borderRadius: '10px',
+                    backgroundColor: (currentSlide + 1) * 2 >= filteredStudies.length ? 'rgba(255, 255, 255, 0.03)' : 'rgba(250, 84, 19, 0.15)',
+                    border: (currentSlide + 1) * 2 >= filteredStudies.length ? '1px solid rgba(255, 255, 255, 0.06)' : '1px solid rgba(250, 84, 19, 0.4)',
+                    color: (currentSlide + 1) * 2 >= filteredStudies.length ? '#475569' : '#FA5413',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    cursor: (currentSlide + 1) * 2 >= filteredStudies.length ? 'not-allowed' : 'pointer',
+                    transition: 'all 0.2s ease'
+                  }}
+                  aria-label="Next Slide"
+                  title="Next Projects"
+                >
+                  <ChevronRight size={18} />
+                </button>
+              </div>
+            )}
+          </div>
+        </div>
+
+        {/* Animated Case Studies Grid / Slider Container */}
+        <div 
+          key={`${selectedCategory}-${currentSlide}-${viewMode}`}
           className="animate-tab-switch grid-casestudies-layout"
         >
-          {filteredStudies.map((study) => (
+          {visibleStudies.map((study) => (
             <div
               key={study.id}
               style={{
                 backgroundColor: '#181C23',
                 border: '1px solid rgba(255, 255, 255, 0.08)',
                 borderRadius: '20px',
-                padding: 'clamp(1.5rem, 3vw, 2.25rem)',
+                padding: 'clamp(1.25rem, 2.5vw, 1.85rem)',
                 boxShadow: '0 8px 24px -4px rgba(0, 0, 0, 0.3)',
                 display: 'flex',
                 flexDirection: 'column',
@@ -314,19 +477,19 @@ export const CaseStudiesSection: React.FC<CaseStudiesSectionProps> = ({ onSelect
             >
               <div style={{ flex: '1 0 auto', display: 'flex', flexDirection: 'column' }}>
                 {/* Visual Banner Preview */}
-                <div style={{ marginBottom: '1.25rem', width: '100%' }}>
+                <div style={{ marginBottom: '1.15rem', width: '100%' }}>
                   {getProjectVisual(study.id)}
                 </div>
 
                 {/* Tags & Verified Badge */}
-                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '0.5rem', marginBottom: '0.85rem' }}>
+                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '0.5rem', marginBottom: '0.75rem' }}>
                   <span 
                     style={{
                       backgroundColor: 'rgba(250, 84, 19, 0.12)',
                       color: '#FF8C38',
-                      fontSize: '0.78rem',
+                      fontSize: '0.76rem',
                       fontWeight: 700,
-                      padding: '0.3rem 0.75rem',
+                      padding: '0.25rem 0.65rem',
                       borderRadius: '6px',
                       textTransform: 'uppercase',
                       letterSpacing: '0.04em',
@@ -341,7 +504,7 @@ export const CaseStudiesSection: React.FC<CaseStudiesSectionProps> = ({ onSelect
                       display: 'inline-flex',
                       alignItems: 'center',
                       gap: '0.35rem',
-                      fontSize: '0.75rem',
+                      fontSize: '0.74rem',
                       fontWeight: 700,
                       color: '#34D399',
                       backgroundColor: 'rgba(16, 185, 129, 0.12)',
@@ -356,53 +519,41 @@ export const CaseStudiesSection: React.FC<CaseStudiesSectionProps> = ({ onSelect
                 </div>
 
                 {/* Case Study Title & Tagline */}
-                <h3 style={{ fontSize: '1.35rem', fontWeight: 800, color: '#FFFFFF', marginBottom: '0.5rem', lineHeight: 1.35 }}>
+                <h3 style={{ fontSize: '1.25rem', fontWeight: 800, color: '#FFFFFF', marginBottom: '0.4rem', lineHeight: 1.35 }}>
                   {study.title}
                 </h3>
-                <p style={{ fontSize: '0.94rem', fontWeight: 600, color: '#FA5413', marginBottom: '1.1rem', lineHeight: 1.45 }}>
+                <p style={{ fontSize: '0.9rem', fontWeight: 600, color: '#FA5413', marginBottom: '1rem', lineHeight: 1.45 }}>
                   {study.tagline}
                 </p>
 
-                {/* Problem & Solution Accordion Narrative */}
-                <div style={{ backgroundColor: '#101622', borderRadius: '12px', padding: '1.1rem', marginBottom: '1.25rem', border: '1px solid rgba(255, 255, 255, 0.06)' }}>
-                  <div style={{ marginBottom: '0.75rem' }}>
-                    <div style={{ fontSize: '0.72rem', fontWeight: 800, color: '#F87171', textTransform: 'uppercase', letterSpacing: '0.06em', marginBottom: '0.25rem' }}>
-                      Client Challenge:
-                    </div>
-                    <div style={{ fontSize: '0.86rem', color: '#CBD5E1', lineHeight: 1.5 }}>
-                      {study.problem}
-                    </div>
-                  </div>
-
+                {/* Verified Enterprise Impact Summary Badge (Replaces tall wall of text with punchy takeaway) */}
+                <div 
+                  style={{
+                    backgroundColor: '#101622',
+                    borderRadius: '12px',
+                    padding: '0.85rem 1rem',
+                    marginBottom: '1.25rem',
+                    border: '1px solid rgba(255, 255, 255, 0.06)',
+                    display: 'flex',
+                    alignItems: 'flex-start',
+                    gap: '0.65rem'
+                  }}
+                >
+                  <CheckCircle2 size={18} style={{ color: '#FA5413', flexShrink: 0, marginTop: '2px' }} />
                   <div>
-                    <div style={{ fontSize: '0.72rem', fontWeight: 800, color: '#34D399', textTransform: 'uppercase', letterSpacing: '0.06em', marginBottom: '0.25rem' }}>
-                      Delivered Engineering:
+                    <div style={{ fontSize: '0.7rem', fontWeight: 800, color: '#34D399', textTransform: 'uppercase', letterSpacing: '0.05em', marginBottom: '0.2rem' }}>
+                      Verified Enterprise Outcome
                     </div>
-                    <div style={{ fontSize: '0.86rem', color: '#E2E8F0', lineHeight: 1.5 }}>
-                      {study.solution}
+                    <div style={{ fontSize: '0.84rem', color: '#E2E8F0', lineHeight: 1.45, fontWeight: 500 }}>
+                      {study.verifiedResults[0]}
                     </div>
                   </div>
-                </div>
-
-                {/* Verified Results List */}
-                <div style={{ marginBottom: '1.5rem' }}>
-                  <div style={{ fontSize: '0.75rem', fontWeight: 800, color: '#CBD5E1', textTransform: 'uppercase', letterSpacing: '0.06em', marginBottom: '0.65rem' }}>
-                    Verified Project Outcomes:
-                  </div>
-                  <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '0.45rem' }}>
-                    {study.verifiedResults.map((result, rIdx) => (
-                      <li key={rIdx} style={{ display: 'flex', alignItems: 'flex-start', gap: '0.5rem', fontSize: '0.86rem', color: '#94A3B8' }}>
-                        <CheckCircle2 size={16} style={{ color: '#FA5413', flexShrink: 0, marginTop: '2px' }} />
-                        <span>{result}</span>
-                      </li>
-                    ))}
-                  </ul>
                 </div>
               </div>
 
               {/* Bottom Tech Tags & Modal Trigger Button */}
-              <div style={{ marginTop: 'auto', paddingTop: '1.25rem', borderTop: '1px solid rgba(255, 255, 255, 0.08)' }}>
-                <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.4rem', marginBottom: '1.25rem' }}>
+              <div style={{ marginTop: 'auto', paddingTop: '1.15rem', borderTop: '1px solid rgba(255, 255, 255, 0.08)' }}>
+                <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.4rem', marginBottom: '1.15rem' }}>
                   {study.techStack.map((tech) => (
                     <span 
                       key={tech} 
@@ -410,9 +561,9 @@ export const CaseStudiesSection: React.FC<CaseStudiesSectionProps> = ({ onSelect
                         backgroundColor: 'rgba(255, 255, 255, 0.05)',
                         border: '1px solid rgba(255, 255, 255, 0.08)',
                         color: '#CBD5E1',
-                        fontSize: '0.75rem',
+                        fontSize: '0.74rem',
                         fontWeight: 600,
-                        padding: '0.25rem 0.55rem',
+                        padding: '0.2rem 0.5rem',
                         borderRadius: '6px'
                       }}
                     >
@@ -421,16 +572,16 @@ export const CaseStudiesSection: React.FC<CaseStudiesSectionProps> = ({ onSelect
                   ))}
                 </div>
 
-                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '1rem', flexWrap: 'wrap' }}>
+                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '0.75rem', flexWrap: 'wrap' }}>
                   <button
                     type="button"
                     onClick={() => onSelectProject && onSelectProject(study)}
                     style={{
                       display: 'inline-flex',
                       alignItems: 'center',
-                      gap: '0.5rem',
+                      gap: '0.45rem',
                       fontWeight: 700,
-                      fontSize: '0.92rem',
+                      fontSize: '0.9rem',
                       color: '#FA5413',
                       backgroundColor: 'transparent',
                       border: 'none',
@@ -440,7 +591,7 @@ export const CaseStudiesSection: React.FC<CaseStudiesSectionProps> = ({ onSelect
                     className="hover:underline"
                   >
                     <span>View Architecture Details</span>
-                    <ArrowRight size={16} />
+                    <ArrowRight size={15} />
                   </button>
 
                   <a
@@ -467,6 +618,42 @@ export const CaseStudiesSection: React.FC<CaseStudiesSectionProps> = ({ onSelect
             </div>
           ))}
         </div>
+
+        {/* Slider Pagination Pill Indicators */}
+        {viewMode === 'slider' && totalSlides > 1 && (
+          <div 
+            style={{
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              gap: '0.5rem',
+              marginTop: '2.25rem'
+            }}
+          >
+            {Array.from({ length: totalSlides }).map((_, idx) => {
+              const isCurrent = currentSlide === idx;
+              return (
+                <button
+                  key={idx}
+                  type="button"
+                  onClick={() => setCurrentSlide(idx)}
+                  style={{
+                    height: '8px',
+                    width: isCurrent ? '32px' : '8px',
+                    borderRadius: '9999px',
+                    backgroundColor: isCurrent ? '#FA5413' : 'rgba(255, 255, 255, 0.2)',
+                    border: 'none',
+                    cursor: 'pointer',
+                    transition: 'all 0.25s cubic-bezier(0.16, 1, 0.3, 1)',
+                    boxShadow: isCurrent ? '0 0 10px rgba(250, 84, 19, 0.5)' : 'none'
+                  }}
+                  aria-label={`Go to slide ${idx + 1}`}
+                  title={`Slide ${idx + 1}`}
+                />
+              );
+            })}
+          </div>
+        )}
 
       </div>
     </section>
