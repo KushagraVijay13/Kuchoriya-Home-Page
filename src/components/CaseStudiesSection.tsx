@@ -34,7 +34,7 @@ export const CaseStudiesSection: React.FC<CaseStudiesSectionProps> = ({ onSelect
     switch (id) {
       case 'ott-streaming':
         return (
-          <div style={{ background: 'linear-gradient(135deg, #181C23 0%, #0F172A 100%)', height: '100%', minHeight: '230px', borderRadius: '14px', padding: '1.25rem', display: 'flex', flexDirection: 'column', justifyContent: 'space-between', color: '#FFFFFF', border: '1px solid rgba(250, 84, 19, 0.35)', position: 'relative', overflow: 'hidden' }}>
+          <div style={{ background: 'linear-gradient(135deg, #181C23 0%, #0F172A 100%)', minHeight: '210px', borderRadius: '14px', padding: '1.25rem', display: 'flex', flexDirection: 'column', justifyContent: 'space-between', color: '#FFFFFF', border: '1px solid rgba(250, 84, 19, 0.35)', position: 'relative', overflow: 'hidden' }}>
             {/* Ambient OTT Glow */}
             <div style={{ position: 'absolute', top: -30, right: -30, width: '120px', height: '120px', background: 'radial-gradient(circle, rgba(250,84,19,0.35) 0%, transparent 70%)', filter: 'blur(25px)' }} />
             
@@ -70,7 +70,7 @@ export const CaseStudiesSection: React.FC<CaseStudiesSectionProps> = ({ onSelect
 
       case 'social-ai-app':
         return (
-          <div style={{ background: 'linear-gradient(135deg, #1E1B4B 0%, #312E81 100%)', height: '100%', minHeight: '230px', borderRadius: '14px', padding: '1.25rem', display: 'flex', flexDirection: 'column', justifyContent: 'space-between', color: '#FFFFFF', position: 'relative', overflow: 'hidden' }}>
+          <div style={{ background: 'linear-gradient(135deg, #1E1B4B 0%, #312E81 100%)', minHeight: '210px', borderRadius: '14px', padding: '1.25rem', display: 'flex', flexDirection: 'column', justifyContent: 'space-between', color: '#FFFFFF', position: 'relative', overflow: 'hidden' }}>
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
               <span style={{ fontSize: '0.7rem', fontWeight: 800, backgroundColor: 'rgba(0,0,0,0.3)', padding: '0.25rem 0.6rem', borderRadius: '6px' }}>
                 COMMUNITY AI ENGINE
@@ -92,7 +92,7 @@ export const CaseStudiesSection: React.FC<CaseStudiesSectionProps> = ({ onSelect
 
       case 'hipaa-emr':
         return (
-          <div style={{ background: 'linear-gradient(135deg, #0C4A6E 0%, #0369A1 100%)', height: '100%', minHeight: '230px', borderRadius: '14px', padding: '1.25rem', display: 'flex', flexDirection: 'column', justifyContent: 'space-between', color: '#FFFFFF', position: 'relative', overflow: 'hidden' }}>
+          <div style={{ background: 'linear-gradient(135deg, #0C4A6E 0%, #0369A1 100%)', minHeight: '210px', borderRadius: '14px', padding: '1.25rem', display: 'flex', flexDirection: 'column', justifyContent: 'space-between', color: '#FFFFFF', position: 'relative', overflow: 'hidden' }}>
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
               <span style={{ fontSize: '0.7rem', fontWeight: 800, backgroundColor: 'rgba(0,0,0,0.3)', padding: '0.25rem 0.6rem', borderRadius: '6px' }}>
                 HL7 / FHIR INTEROP
@@ -111,7 +111,7 @@ export const CaseStudiesSection: React.FC<CaseStudiesSectionProps> = ({ onSelect
 
       case 'expensya-fintech':
         return (
-          <div style={{ background: 'linear-gradient(135deg, #064E3B 0%, #059669 100%)', height: '100%', minHeight: '230px', borderRadius: '14px', padding: '1.25rem', display: 'flex', flexDirection: 'column', justifyContent: 'space-between', color: '#FFFFFF', position: 'relative', overflow: 'hidden' }}>
+          <div style={{ background: 'linear-gradient(135deg, #064E3B 0%, #059669 100%)', minHeight: '210px', borderRadius: '14px', padding: '1.25rem', display: 'flex', flexDirection: 'column', justifyContent: 'space-between', color: '#FFFFFF', position: 'relative', overflow: 'hidden' }}>
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
               <CreditCard size={20} style={{ color: '#A7F3D0' }} />
               <span style={{ fontSize: '0.7rem', fontWeight: 800, backgroundColor: 'rgba(0,0,0,0.3)', padding: '0.25rem 0.6rem', borderRadius: '6px' }}>
@@ -130,7 +130,7 @@ export const CaseStudiesSection: React.FC<CaseStudiesSectionProps> = ({ onSelect
 
       case 'eduk-platform':
         return (
-          <div style={{ background: 'linear-gradient(135deg, #7C2D12 0%, #C2410C 100%)', height: '100%', minHeight: '230px', borderRadius: '14px', padding: '1.25rem', display: 'flex', flexDirection: 'column', justifyContent: 'space-between', color: '#FFFFFF', position: 'relative', overflow: 'hidden' }}>
+          <div style={{ background: 'linear-gradient(135deg, #7C2D12 0%, #C2410C 100%)', minHeight: '210px', borderRadius: '14px', padding: '1.25rem', display: 'flex', flexDirection: 'column', justifyContent: 'space-between', color: '#FFFFFF', position: 'relative', overflow: 'hidden' }}>
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
               <span style={{ fontSize: '0.7rem', fontWeight: 800, backgroundColor: 'rgba(0,0,0,0.3)', padding: '0.25rem 0.6rem', borderRadius: '6px' }}>
                 LIVE OTT LMS
@@ -151,7 +151,7 @@ export const CaseStudiesSection: React.FC<CaseStudiesSectionProps> = ({ onSelect
 
       case 'sixt-mobility':
         return (
-          <div style={{ background: 'linear-gradient(135deg, #181C23 0%, #2A303C 100%)', height: '100%', minHeight: '230px', borderRadius: '14px', padding: '1.25rem', display: 'flex', flexDirection: 'column', justifyContent: 'space-between', color: '#FFFFFF', border: '1px solid rgba(250,84,19,0.4)', position: 'relative', overflow: 'hidden' }}>
+          <div style={{ background: 'linear-gradient(135deg, #181C23 0%, #2A303C 100%)', minHeight: '210px', borderRadius: '14px', padding: '1.25rem', display: 'flex', flexDirection: 'column', justifyContent: 'space-between', color: '#FFFFFF', border: '1px solid rgba(250,84,19,0.4)', position: 'relative', overflow: 'hidden' }}>
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
               <span style={{ fontSize: '0.72rem', fontWeight: 800, color: '#FA5413' }}>SIXT MOBILITY</span>
               <Key size={18} style={{ color: '#FA5413' }} />
@@ -286,9 +286,6 @@ export const CaseStudiesSection: React.FC<CaseStudiesSectionProps> = ({ onSelect
         <div 
           key={selectedCategory}
           className="animate-tab-switch grid-casestudies-layout"
-          style={{
-            minHeight: '400px'
-          }}
         >
           {filteredStudies.map((study) => (
             <div
@@ -301,10 +298,8 @@ export const CaseStudiesSection: React.FC<CaseStudiesSectionProps> = ({ onSelect
                 boxShadow: '0 8px 24px -4px rgba(0, 0, 0, 0.3)',
                 display: 'flex',
                 flexDirection: 'column',
-                justifyContent: 'space-between',
                 transition: 'all 0.3s cubic-bezier(0.16, 1, 0.3, 1)',
-                position: 'relative',
-                overflow: 'hidden'
+                position: 'relative'
               }}
               onMouseEnter={(e) => {
                 e.currentTarget.style.transform = 'translateY(-6px)';
@@ -317,9 +312,9 @@ export const CaseStudiesSection: React.FC<CaseStudiesSectionProps> = ({ onSelect
                 e.currentTarget.style.boxShadow = '0 8px 24px -4px rgba(0, 0, 0, 0.3)';
               }}
             >
-              <div>
+              <div style={{ flex: '1 0 auto', display: 'flex', flexDirection: 'column' }}>
                 {/* Visual Banner Preview */}
-                <div style={{ marginBottom: '1.5rem' }}>
+                <div style={{ marginBottom: '1.25rem', width: '100%' }}>
                   {getProjectVisual(study.id)}
                 </div>
 
@@ -361,7 +356,7 @@ export const CaseStudiesSection: React.FC<CaseStudiesSectionProps> = ({ onSelect
                 </div>
 
                 {/* Case Study Title & Tagline */}
-                <h3 style={{ fontSize: '1.35rem', fontWeight: 800, color: '#FFFFFF', marginBottom: '0.5rem', lineHeight: 1.3 }}>
+                <h3 style={{ fontSize: '1.35rem', fontWeight: 800, color: '#FFFFFF', marginBottom: '0.5rem', lineHeight: 1.35 }}>
                   {study.title}
                 </h3>
                 <p style={{ fontSize: '0.94rem', fontWeight: 600, color: '#FA5413', marginBottom: '1.1rem', lineHeight: 1.45 }}>
@@ -406,8 +401,8 @@ export const CaseStudiesSection: React.FC<CaseStudiesSectionProps> = ({ onSelect
               </div>
 
               {/* Bottom Tech Tags & Modal Trigger Button */}
-              <div>
-                <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.4rem', marginBottom: '1.35rem', paddingTop: '1rem', borderTop: '1px solid rgba(255, 255, 255, 0.08)' }}>
+              <div style={{ marginTop: 'auto', paddingTop: '1.25rem', borderTop: '1px solid rgba(255, 255, 255, 0.08)' }}>
+                <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.4rem', marginBottom: '1.25rem' }}>
                   {study.techStack.map((tech) => (
                     <span 
                       key={tech} 
@@ -426,7 +421,7 @@ export const CaseStudiesSection: React.FC<CaseStudiesSectionProps> = ({ onSelect
                   ))}
                 </div>
 
-                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '1rem', flexWrap: 'wrap' }}>
                   <button
                     type="button"
                     onClick={() => onSelectProject && onSelectProject(study)}
