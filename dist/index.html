@@ -180,43 +180,584 @@
   }
   </script>
 
-  <!-- Bundled CSS -->
-  <link rel="stylesheet" href="./bundle.css" />
+  
+  <!-- Inlined Core CSS (Zero HTTP 404 risk) -->
+  <style id="kuchoriya-core-styles">
+/* ==========================================================================
+   Kuchoriya TechSoft Redesign - Global Styles & Design System
+   Brand Accent: Kuchoriya Orange (#FA5413 / #FB771F / #FF8C38)
+   Dark Surfaces: #0B0F17, #101622, #181C23
+   Light Surfaces: #FFFFFF, #F8F9FA, #F1F5F9
+   ========================================================================== */
 
-  <!-- Local Frontend Styling Engine & Frameworks (Strictly inside D: drive Kuchoriya directory) -->
-  <script src="./tailwind.js"></script>
+:root {
+  --color-orange-primary: #FA5413;
+  --color-orange-hover: #E04403;
+  --color-orange-light: #FFF2EB;
+  --color-orange-glow: rgba(250, 84, 19, 0.28);
+  --color-orange-gradient: linear-gradient(135deg, #FF7A29 0%, #FA5413 100%);
+  
+  --color-dark-bg: #0B0F17;
+  --color-dark-surface: #101622;
+  --color-dark-card: #181C23;
+  --color-dark-border: rgba(255, 255, 255, 0.1);
+  --color-dark-text-muted: #94A3B8;
+  
+  --color-light-bg: #FFFFFF;
+  --color-light-surface: #F8F9FA;
+  --color-light-border: #E2E8F0;
+  --color-light-text: #0F172A;
+  --color-light-text-muted: #64748B;
+  
+  --font-sans: 'Plus Jakarta Sans', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 18px;
+  --radius-xl: 24px;
+}
+
+/* Base Resets */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-family: var(--font-sans);
+  scroll-behavior: smooth;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  background-color: #0B0F17 !important;
+  color: #FFFFFF !important;
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+/* Selection */
+::selection {
+  background-color: var(--color-orange-primary);
+  color: #FFFFFF;
+}
+
+/* Container - Always centered on page */
+.container {
+  width: 100% !important;
+  max-width: 1280px !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  padding-left: 1.25rem !important;
+  padding-right: 1.25rem !important;
+}
+
+@media (min-width: 640px) {
+  .container {
+    padding-left: 2rem !important;
+    padding-right: 2rem !important;
+  }
+}
+
+@media (min-width: 1024px) {
+  .container {
+    padding-left: 2.5rem !important;
+    padding-right: 2.5rem !important;
+  }
+}
+
+/* Typography Helpers */
+.heading-hero {
+  font-size: clamp(2.35rem, 5.2vw + 1rem, 4.25rem);
+  font-weight: 800;
+  line-height: 1.1;
+  letter-spacing: -0.035em;
+}
+
+.heading-section {
+  font-size: clamp(1.9rem, 3.6vw, 2.85rem);
+  font-weight: 800;
+  line-height: 1.2;
+  letter-spacing: -0.025em;
+}
+
+.heading-card {
+  font-size: 1.25rem;
+  font-weight: 700;
+  line-height: 1.35;
+}
+
+/* Brand Accent & Gradients */
+.text-orange {
+  color: var(--color-orange-primary);
+}
+
+.bg-orange {
+  background-color: var(--color-orange-primary);
+}
+
+.gradient-orange-text {
+  background: linear-gradient(135deg, #FA5413 0%, #FF9248 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.glow-orange {
+  box-shadow: 0 10px 30px -10px var(--color-orange-glow);
+}
+
+.glow-orange-lg {
+  box-shadow: 0 20px 50px -15px rgba(250, 84, 19, 0.35);
+}
+
+/* Glassmorphism Accents */
+.glass-dark {
+  background: rgba(24, 28, 35, 0.75);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.glass-light {
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(226, 232, 240, 0.8);
+}
+
+/* Buttons */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  font-weight: 600;
+  font-size: 0.95rem;
+  border-radius: var(--radius-md);
+  padding: 0.75rem 1.5rem;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  cursor: pointer;
+  text-decoration: none;
+  border: none;
+  outline: none;
+}
+
+.btn-primary {
+  background: var(--color-orange-gradient);
+  color: #FFFFFF;
+  box-shadow: 0 4px 16px rgba(250, 84, 19, 0.4);
+}
+
+.btn-primary:hover {
+  background: linear-gradient(135deg, #E04403 0%, #FA5413 100%);
+  box-shadow: 0 8px 24px rgba(250, 84, 19, 0.5);
+  transform: translateY(-2px);
+}
+
+.btn-secondary {
+  background-color: transparent;
+  color: #FFFFFF;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.btn-secondary:hover {
+  background-color: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.45);
+  transform: translateY(-2px);
+}
+
+.btn-secondary-light {
+  background-color: #FFFFFF;
+  color: var(--color-light-text);
+  border: 1px solid var(--color-light-border);
+}
+
+.btn-secondary-light:hover {
+  background-color: var(--color-light-surface);
+  border-color: #CBD5E1;
+  transform: translateY(-2px);
+}
+
+/* Smooth Tab Animations (Point 1 fix) */
+@keyframes tabFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(12px) scale(0.985);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.animate-tab-switch {
+  animation: tabFadeIn 0.35s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes pulseLive {
+  0%, 100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.4;
+    transform: scale(0.85);
+  }
+}
+
+.pulse-live {
+  animation: pulseLive 2s ease-in-out infinite;
+}
+
+/* ==========================================================================
+   Engineering Graphic Art Animations (Authentic Software Architecture)
+   ========================================================================== */
+@keyframes circuitFlow {
+  from {
+    stroke-dashoffset: 200;
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+.circuit-flow-line {
+  stroke-dasharray: 8 14;
+  animation: circuitFlow 14s linear infinite;
+  opacity: 0.65;
+}
+
+.circuit-flow-fast {
+  stroke-dasharray: 6 12;
+  animation: circuitFlow 8s linear infinite;
+  opacity: 0.65;
+}
+
+@keyframes nodeGlow {
+  0%, 100% {
+    r: 3;
+    opacity: 0.4;
+  }
+  50% {
+    r: 4.5;
+    opacity: 0.75;
+    filter: drop-shadow(0 0 4px #FA5413);
+  }
+}
+
+.pulsing-circuit-node {
+  animation: nodeGlow 3s ease-in-out infinite;
+}
+
+@keyframes floatDiagram {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+.float-diagram {
+  animation: floatDiagram 6s ease-in-out infinite;
+}
+
+/* Ticker Animations */
+@keyframes tickerSlide {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+.ticker-track {
+  display: flex;
+  width: max-content;
+  animation: tickerSlide 35s linear infinite;
+}
+
+.ticker-track:hover {
+  animation-play-state: paused;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #0B0F17;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #232D3F;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-orange-primary);
+}
+
+/* Focus styles for accessibility */
+a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible, textarea:focus-visible {
+  outline: 2px solid var(--color-orange-primary);
+  outline-offset: 2px;
+}
+
+/* ==========================================================================
+   Responsive Grid & Multi-Column Layout Architecture
+   Ensures robust multi-column alignment across viewports without inline conflicts
+   ========================================================================== */
+
+/* Hero: 7 cols text on left, 5 cols interactive dashboard on right */
+.grid-hero-layout {
+  display: grid !important;
+  grid-template-columns: 1fr !important;
+  gap: 3.5rem !important;
+  align-items: center !important;
+  width: 100% !important;
+}
+@media (min-width: 1024px) {
+  .grid-hero-layout {
+    grid-template-columns: 7fr 5fr !important;
+  }
+}
+
+/* Credibility Bar: 2 cols on mobile, 4 cols on desktop */
+.grid-credibility-layout {
+  display: grid !important;
+  grid-template-columns: repeat(2, 1fr) !important;
+  gap: 2rem !important;
+  width: 100% !important;
+}
+@media (min-width: 768px) {
+  .grid-credibility-layout {
+    grid-template-columns: repeat(4, 1fr) !important;
+  }
+}
+
+/* Services: 1 col mobile, 2 cols tablet, 3 cols desktop */
+.grid-services-layout {
+  display: grid !important;
+  grid-template-columns: 1fr !important;
+  gap: 1.75rem !important;
+  width: 100% !important;
+}
+@media (min-width: 768px) {
+  .grid-services-layout {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+}
+@media (min-width: 1024px) {
+  .grid-services-layout {
+    grid-template-columns: repeat(3, 1fr) !important;
+  }
+}
+
+/* Industries: 5 cols visual mockup, 7 cols narrative on desktop */
+.grid-industries-layout {
+  display: grid !important;
+  grid-template-columns: 1fr !important;
+  gap: 2.5rem !important;
+  align-items: center !important;
+  width: 100% !important;
+}
+@media (min-width: 1024px) {
+  .grid-industries-layout {
+    grid-template-columns: 5fr 7fr !important;
+  }
+}
+
+/* Case Studies: 1 col mobile, 2 cols desktop */
+.grid-casestudies-layout {
+  display: grid !important;
+  grid-template-columns: 1fr !important;
+  gap: 2.25rem !important;
+  width: 100% !important;
+}
+@media (min-width: 1024px) {
+  .grid-casestudies-layout {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+}
+
+/* Why Choose Us & Process: 1 col mobile, 2 tablet, 3 desktop */
+.grid-whychoose-layout,
+.grid-process-layout {
+  display: grid !important;
+  grid-template-columns: 1fr !important;
+  gap: 1.75rem !important;
+  width: 100% !important;
+}
+@media (min-width: 768px) {
+  .grid-whychoose-layout,
+  .grid-process-layout {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+}
+@media (min-width: 1024px) {
+  .grid-whychoose-layout,
+  .grid-process-layout {
+    grid-template-columns: repeat(3, 1fr) !important;
+  }
+}
+
+/* Testimonials: 1 col mobile, 3 cols desktop */
+.grid-testimonials-layout {
+  display: grid !important;
+  grid-template-columns: 1fr !important;
+  gap: 2rem !important;
+  width: 100% !important;
+}
+@media (min-width: 768px) {
+  .grid-testimonials-layout {
+    grid-template-columns: repeat(3, 1fr) !important;
+  }
+}
+
+/* Trust Logos & Badges: 2 cols mobile, 4 cols desktop */
+.grid-trustlogos-layout {
+  display: grid !important;
+  grid-template-columns: repeat(2, 1fr) !important;
+  gap: 1.5rem !important;
+  width: 100% !important;
+}
+@media (min-width: 1024px) {
+  .grid-trustlogos-layout {
+    grid-template-columns: repeat(4, 1fr) !important;
+  }
+}
+
+/* Project Estimator: 7 cols form, 5 cols estimate calculation */
+.grid-estimator-layout {
+  display: grid !important;
+  grid-template-columns: 1fr !important;
+  gap: 2.5rem !important;
+  align-items: start !important;
+  width: 100% !important;
+}
+@media (min-width: 1024px) {
+  .grid-estimator-layout {
+    grid-template-columns: 7fr 5fr !important;
+  }
+}
+
+/* Contact Section: 5 cols global contact info, 7 cols enquiry form */
+.grid-contact-layout {
+  display: grid !important;
+  grid-template-columns: 1fr !important;
+  gap: 3rem !important;
+  align-items: start !important;
+  width: 100% !important;
+}
+@media (min-width: 1024px) {
+  .grid-contact-layout {
+    grid-template-columns: 5fr 7fr !important;
+  }
+}
+
+/* Footer: 4 cols on desktop */
+.grid-footer-layout {
+  display: grid !important;
+  grid-template-columns: 1fr !important;
+  gap: 3rem !important;
+  width: 100% !important;
+}
+@media (min-width: 768px) {
+  .grid-footer-layout {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+}
+@media (min-width: 1024px) {
+  .grid-footer-layout {
+    grid-template-columns: 4fr 2fr 2fr 3fr !important;
+  }
+}
+
+/* 5 Statistics Grid */
+.grid-stats-5 {
+  display: grid !important;
+  grid-template-columns: repeat(2, 1fr) !important;
+  gap: 1.5rem !important;
+  width: 100% !important;
+}
+@media (min-width: 768px) {
+  .grid-stats-5 {
+    grid-template-columns: repeat(5, 1fr) !important;
+  }
+}
+
+/* Footer Offices Grid */
+.grid-footer-offices {
+  display: grid !important;
+  grid-template-columns: 1fr !important;
+  gap: 1.25rem !important;
+  width: 100% !important;
+}
+@media (min-width: 640px) {
+  .grid-footer-offices {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+}
+@media (min-width: 1024px) {
+  .grid-footer-offices {
+    grid-template-columns: repeat(3, 1fr) !important;
+  }
+}
+
+
+
+  </style>
+  <link rel="stylesheet" href="./bundle.css" />
+  <link rel="stylesheet" href="./dist/bundle.css" />
+
+    <!-- Tailwind CSS Engine with Dual CDN + Local Fallback -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>window.tailwind || document.write('<script src="./tailwind.js"><\/script><script src="./dist/tailwind.js"><\/script>')</script>
   <script>
-    tailwind.config = {
-      theme: {
-        container: {
-          center: true,
-          padding: '1.25rem'
-        },
-        extend: {
-          colors: {
-            brand: {
-              orange: '#FA5413',
-              'orange-hover': '#E04403',
-              'orange-light': '#FFF2EB',
-              dark: '#0B0F17',
-              surface: '#101622',
-              card: '#181C23'
+    function configureTailwind() {
+      if (typeof tailwind !== 'undefined') {
+        tailwind.config = {
+          theme: {
+            container: {
+              center: true,
+              padding: '1.25rem'
+            },
+            extend: {
+              colors: {
+                brand: {
+                  orange: '#FA5413',
+                  'orange-hover': '#E04403',
+                  'orange-light': '#FFF2EB',
+                  dark: '#0B0F17',
+                  surface: '#101622',
+                  card: '#181C23'
+                }
+              },
+              fontFamily: {
+                sans: ['"Plus Jakarta Sans"', 'Inter', 'system-ui', 'sans-serif']
+              }
             }
-          },
-          fontFamily: {
-            sans: ['"Plus Jakarta Sans"', 'Inter', 'system-ui', 'sans-serif']
           }
-        }
+        };
       }
-    };
+    }
+    configureTailwind();
+    if (typeof tailwind === 'undefined') {
+      window.addEventListener('DOMContentLoaded', configureTailwind);
+      window.addEventListener('load', configureTailwind);
+    }
   </script>
-  <script src="./confetti.js"></script>
+  <!-- Canvas Confetti Engine with Dual CDN + Local Fallback -->
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.4/dist/confetti.browser.min.js"></script>
+  <script>window.confetti || document.write('<script src="./confetti.js"><\/script><script src="./dist/confetti.js"><\/script>')</script>
 </head>
 <body class="bg-[#0B0F17] text-white antialiased selection:bg-orange-600 selection:text-white" style="background-color: #0B0F17; color: #FFFFFF;">
   <!-- React App Mount Point -->
   <div id="root"></div>
 
-  <!-- Bundled React Application -->
+    <!-- Bundled React Application with Self-Healing Multi-Path Fallback -->
   <script src="./bundle.js" onerror="this.onerror=null;this.src='./dist/bundle.js';"></script>
 </body>
 </html>
